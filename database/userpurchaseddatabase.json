@@ -1,0 +1,19 @@
+{
+  "manu@gmail.com": {
+    "Brinjal": {
+      "groceryname": "Brinjal",
+      "groceryimage": "Brinjal.png",
+      "grocerycost": "Rs.50"
+    },
+    "Apple": {
+      "groceryname": "Apple",
+      "groceryimage": "Apple.png",
+      "grocerycost": "Rs.200"
+    },
+    "Banana": {
+      "groceryname": "Banana",
+      "groceryimage": "Banana.png",
+      "grocerycost": "Rs.50"
+    }
+  }
+}

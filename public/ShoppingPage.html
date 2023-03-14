@@ -17,15 +17,27 @@
           <input class="inputBox" type="text" />
           <img src="./assets/searchBar.png" />
         </div>
-        <button class="viewCartBtn" id="viewCartBtn">View Cart</button>
+        <button class="viewCartBtn" id="viewCartBtn" onclick="viewcart()">View Cart</button>
         <div class="profileButton" id="profileButton">P</div>
         <div class="userName" id="userName">Priyanka</div>
         <div class="options">
-          <img src="./assets/optionBar.png" />
+          <div class="dropDown">
+            <button class="dropbtn"><img src="./assets/optionBar.png" /></button>
+            <div class="dropdownContent">
+              <div class="contentItems1">
+                <div><img src="./assets/profile.png"></div>
+                <div class="text">Profile</div>
+              </div>
+              <div class="contentItems2">
+                <img src="./assets/logout.png">
+                <div class="text" onclick="logout()">Logout</div>
+              </div>          
+             </div>
+          </div>
         </div>
       </div>
       <div class="shoppingSection" id="shoppingSection">
-        <div class="GroceryItemSection">
+        <!-- <div class="GroceryItemSection">
           <div class="topSectionItem">
             <label class="groceryName">Fruit Section</label>
             <button class="SeeMoreBtn">See More</button>
@@ -256,7 +268,7 @@
               <button>Add to Cart</button>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <script src="./scripts/shoppingpage.js"></script>

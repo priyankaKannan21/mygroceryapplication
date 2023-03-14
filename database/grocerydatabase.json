@@ -1,5 +1,5 @@
 {
-    "fruits" :{
+    "Fruits" :{
         "Apple" : {
             "groceryname" : "Apple",
             "groceryimage" : "Apple.png",
@@ -80,7 +80,7 @@
             "grocerycost" : "Rs.140"
         }
     },
-    "Staple" :{
+    "Staples" :{
         "Rice" : {
             "groceryname" : "Rice",
             "groceryimage" : "Rice.png",

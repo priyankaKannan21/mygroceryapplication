@@ -6,7 +6,7 @@
     padding: 0px;
 }
 body{
-    font-family: 'Times New Roman', Times, serif;   
+    font-family: 'Lexend Deca';
     background-image: url("/assets/bg1.jfif");
     background-repeat: no-repeat;
     background-size:cover;
@@ -91,7 +91,7 @@ body{
 .loginForm .inputbox{
     width: 381.44px;
     height: 32.31px;  
-    font-size: 16px; 
+    font-size: 20px; 
     background: #F24822;
     border: 2px solid #F24822;
     color: black;

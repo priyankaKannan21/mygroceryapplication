@@ -6,7 +6,7 @@
 }
 body{
     font-family: 'Times New Roman', Times, serif;   
-    background-image: url("/public/assets/bg1.jfif");
+    background-image: url("/assets/bg1.jfif");
     background-repeat: no-repeat;
     background-size:cover;
     height: 100vh;
@@ -69,14 +69,72 @@ body{
     cursor: pointer;
 }
 
-.topLeftSection .options > img{
-    margin-left: 40px;
-    margin-top: -3px;
+.options .dropDown {
+    position: relative;
+    display: inline-block;
+  }
+
+.dropDown .dropdownContent {
+    display: none;
+    position: absolute;
+    background-image: linear-gradient(45deg, #e9b85d,  #F24822, #e9b85d);
+    margin-left: -130px;
+    min-width: 180px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropDown .dropbtn {
+    border: none;
+    cursor: pointer;
+    background: none;
+  }
+.dropbtn > img{
+    margin-left: 10px;
+    margin-top: -2px;
     width: 50px;
     height: 50px;
     cursor: pointer;
-    justify-content: flex-end;
 }
+
+.dropdownContent .contentItems1{
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.contentItems1 .text{
+    margin-top: -5px;
+}
+
+.contentItems1:hover{
+    background-color: #e9b85d;
+    border-radius: 10px;
+}
+
+.dropdownContent .contentItems2{
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    gap: 20px;
+    cursor: pointer;
+}
+.contentItems2 .text{
+    margin-top: -5px;
+}
+
+.contentItems2:hover{
+    background-color: #e9b85d;
+    border-radius: 10px;
+}
+
+.dropDown:hover .dropdownContent {
+    display: block;
+}
+
 
 .bottomSection{
     width: 100%;
@@ -211,7 +269,11 @@ body{
     font-weight: 600;
     font-size: 20px;
     line-height: 32px;
+    margin-top: 10px;
     color: #333333;
+    background-color: #A3DBDE;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .productCostNameList > button {
@@ -230,6 +292,10 @@ body{
     display: flex;
     justify-content: space-between;
     margin-top: 80px;
+    background-color: #fa8166;
+    padding: 10px;
+    border-radius: 10px;
+
 }
 
 .productCostNameList > button:hover{
