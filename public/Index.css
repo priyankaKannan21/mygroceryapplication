@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Frijole&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;   
+    background-image: url("/assets/bg1.jfif");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+}
+.app{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.leftsidePage{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    align-items: center;
+}
+.rightsidePage{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    align-items: center;
+}
+.leftsidePage > .screen{
+    top: 170px;
+    display: none;
+    position: absolute;
+    width: 459px;
+    height: 551px;
+}
+
+.leftsidePage > .screen.active{
+    display: block;
+}
+.leftsidePage .logoImage{
+    align-self: flex-start;
+}
+.leftsidePage .logoImage img{
+    margin-top: -30px;
+    margin-left:-10%;
+    width: 367px;
+    height: 226px;
+}
+
+.signInPage .loginForm{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 20px;
+    margin-left: 50px;
+}
+
+.signUpPage .loginForm{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 20px;
+    margin-left: 50px;
+}
+
+.loginForm .signIn{
+    font-family: 'Frijole';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 76px;
+    text-align: center;
+    color: #20DF7F;
+}
+
+.loginForm .content{
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #224957;
+}
+
+.loginForm .inputbox{
+    width: 381.44px;
+    height: 32.31px;  
+    font-size: 16px; 
+    background: #F24822;
+    border: 2px solid #F24822;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.inputbox::placeholder{
+    color: black;
+}
+
+.loginForm .layoutContent{
+    display: inline;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #093545;
+}
+
+.loginForm .button{
+    width: 381.44px;
+    height: 52.31px;
+    font-size: 16px; 
+    background: #20DF7F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.rightsidePage .header{
+    padding-top: 80px;
+    font-family: 'Frijole';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 55px;
+    color: #224957;
+    height: 20%;
+}
+
+.rightsidePage .content1{
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 30px;
+    color: #F24822;
+    padding: 0px 60px 0px 70px;
+    text-align: justify;
+}
+
+.rightsidePage .groceryImage > img{
+    width: 500px;
+    height: 300px;
+}

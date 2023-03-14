@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Frijole&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;   
+    background-image: url("/assets/bg1.jfif");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+}
+.app{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.app .topSection{
+    height: 8%;
+    display: flex;
+    padding: 20px 20px;
+}
+
+.topSection .logoImage{
+    width: 10%;
+}
+.logoImage > img{
+    width: 150px;
+    height: 160px;
+    margin-top: -55px;
+    margin-left: -10px;
+}
+
+.topSection .searchBar{
+    background-color: #93D591;
+    width: 60%;
+    height: 50%;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.searchBar .inputBox{
+    justify-content: center;
+    padding: 5px;
+    width: 94%;
+    border-radius: 10px;
+}
+
+.searchBar > img{
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.topSection .viewCartBtn{
+    margin-left: 30px;
+    margin-top: 3px;
+    width: 127px;
+    height: 43px;
+    font-size: 16px; 
+    background: #F24822;
+    border: 1px solid #F24822;
+    border-radius: 10px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.topSection .viewCartBtn:hover{
+    background: #e9b85d;
+    border: 1px solid #F24822;
+
+}
+
+.topSection .profileButton{
+    margin-left: 40px;
+    margin-right: -20px;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    color: white;
+    padding: 16px;
+    font-size: 20px;
+    border-radius: 40px;
+    background-color: rgb(48, 163, 48);
+    cursor: pointer;
+}
+
+.topSection .userName{
+    width: 20%;
+    height: 40px;
+    padding: 10px 0px;
+    text-align: center;
+    color: rgb(4, 60, 165);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 22px;
+}
+.options > img{
+    margin-left: 10px;
+    margin-top: -3px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.shoppingSection{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 50px 50px 50px;
+    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.shoppingSection::-webkit-scrollbar{
+    display: none;
+}
+
+.shoppingSection .GroceryItemSection{
+    background-image: linear-gradient(to right, rgb(147, 213, 145),  rgb(48, 163, 48),  rgb(147, 213, 145));
+    border-radius: 40px;
+    width: 95%;
+    height: 90%;
+    padding: 20px;
+}
+
+.GroceryItemSection .topSectionItem{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.topSectionItem .groceryName{
+    font-family: 'Frijole';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    color: #4C0D0D;
+}
+
+.topSectionItem > button{
+    width: 127px;
+    height: 43px;
+    font-size: 16px; 
+    background: #F24822;
+    border: 1px solid #F24822;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.topSectionItem > button:hover{
+    background: #e9b85d;
+    border: 1px solid #F24822;
+}
+.GroceryCards{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    transition: transform 2s;
+}
+
+.GroceryCards .CardViewSection{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: #A3DBDE;
+    border-radius: 20px;
+    width: 220px;
+    height: 210px;
+    justify-content: center;
+    transition: transform 2s;
+}
+
+.GroceryCards .CardViewSection:hover {
+    box-shadow: 2px 5px 10px #F24822;
+    transform: scale(1.05);
+  }
+
+.CardViewSection .GroceryImage1{
+    display: flex;
+    width: 110px;
+    flex-direction: column;
+    align-self: center;
+}
+
+.CardViewSection .GroceryNameCost{
+    padding: 0px 30px 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    color: #333333;
+}
+
+.CardViewSection > button{
+    margin-top: 5px;
+    align-self: center;
+    width: 150px;
+    height: 30px;
+    font-size: 16px; 
+    background: #5780cd;
+    border: 1px solid #5780cd;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.CardViewSection > button:hover{
+    background: #87a3db;
+    border: 1px solid #5780cd;
+}
+

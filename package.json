@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "name": "grocery_online",
+  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://Priyanka_soliton21@bitbucket.org/newrepo1/grocery_online.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/newrepo1/grocery_online/issues"
+  },
+  "homepage": "https://bitbucket.org/newrepo1/grocery_online#readme"
+}

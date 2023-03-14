@@ -1,0 +1,110 @@
+{
+    "fruits" :{
+        "Apple" : {
+            "groceryname" : "Apple",
+            "groceryimage" : "Apple.png",
+            "grocerycost" : "Rs.200"
+        },
+        "Orange" : {
+            "groceryname" : "Orange",
+            "groceryimage" : "Orange.png",
+            "grocerycost" : "Rs.150"
+        },
+        "Banana" : {
+            "groceryname" : "Banana",
+            "groceryimage" : "Banana.png",
+            "grocerycost" : "Rs.50"
+        },
+        "Mango" : {
+            "groceryname" : "Mango",
+            "groceryimage" : "Mango.png",
+            "grocerycost" : "Rs.80"
+        },
+        "Grapes" : {
+            "groceryname" : "Grapes",
+            "groceryimage" : "Grapes.png",
+            "grocerycost" : "Rs.180"
+        }
+    },
+    "Vegetables" :{
+        "Onion" : {
+            "groceryname" : "Onion",
+            "groceryimage" : "Onion.png",
+            "grocerycost" : "Rs.80"
+        },
+        "Tomato" : {
+            "groceryname" : "Tomato",
+            "groceryimage" : "Tomato.png",
+            "grocerycost" : "Rs.30"
+        },
+        "Brinjal" : {
+            "groceryname" : "Brinjal",
+            "groceryimage" : "Brinjal.png",
+            "grocerycost" : "Rs.50"
+        },
+        "Potato" : {
+            "groceryname" : "Potato",
+            "groceryimage" : "Potato.png",
+            "grocerycost" : "Rs.40"
+        },
+        "Spinach" : {
+            "groceryname" : "Spinach",
+            "groceryimage" : "Spinach.png",
+            "grocerycost" : "Rs.20"
+        }
+    },
+    "Dairy" :{
+        "Milk" : {
+            "groceryname" : "Milk",
+            "groceryimage" : "Milk.png",
+            "grocerycost" : "Rs.30"
+        },
+        "Butter" : {
+            "groceryname" : "Butter",
+            "groceryimage" : "Butter.png",
+            "grocerycost" : "Rs.100"
+        },
+        "Cheese" : {
+            "groceryname" : "Cheese",
+            "groceryimage" : "Cheese.png",
+            "grocerycost" : "Rs.120"
+        },
+        "Curd" : {
+            "groceryname" : "Curd",
+            "groceryimage" : "Curd.png",
+            "grocerycost" : "Rs.20"
+        },
+        "Panner" : {
+            "groceryname" : "Panner",
+            "groceryimage" : "Panner.png",
+            "grocerycost" : "Rs.140"
+        }
+    },
+    "Staple" :{
+        "Rice" : {
+            "groceryname" : "Rice",
+            "groceryimage" : "Rice.png",
+            "grocerycost" : "Rs.60"
+        },
+        "Maida" : {
+            "groceryname" : "Maida",
+            "groceryimage" : "Maida.png",
+            "grocerycost" : "Rs.30"
+        },
+        "Wheat" : {
+            "groceryname" : "Wheat",
+            "groceryimage" : "Wheat.png",
+            "grocerycost" : "Rs.80"
+        },
+        "GreenGram" : {
+            "groceryname" : "GreenGram",
+            "groceryimage" : "GreenGram.png",
+            "grocerycost" : "Rs.70"
+        },
+        "UradDhal" : {
+            "groceryname" : "UradDhal",
+            "groceryimage" : "UradDhal.png",
+            "grocerycost" : "Rs.120"
+        }
+    }
+}
