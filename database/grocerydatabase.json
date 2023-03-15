@@ -3,108 +3,108 @@
         "Apple" : {
             "groceryname" : "Apple",
             "groceryimage" : "Apple.png",
-            "grocerycost" : "Rs.200"
+            "grocerycost" : "Rs.200/kg"
         },
         "Orange" : {
             "groceryname" : "Orange",
             "groceryimage" : "Orange.png",
-            "grocerycost" : "Rs.150"
+            "grocerycost" : "Rs.150/kg"
         },
         "Banana" : {
             "groceryname" : "Banana",
             "groceryimage" : "Banana.png",
-            "grocerycost" : "Rs.50"
+            "grocerycost" : "Rs.50/kg"
         },
         "Mango" : {
             "groceryname" : "Mango",
             "groceryimage" : "Mango.png",
-            "grocerycost" : "Rs.80"
+            "grocerycost" : "Rs.80/kg"
         },
         "Grapes" : {
             "groceryname" : "Grapes",
             "groceryimage" : "Grapes.png",
-            "grocerycost" : "Rs.180"
+            "grocerycost" : "Rs.180/kg"
         }
     },
     "Vegetables" :{
         "Onion" : {
             "groceryname" : "Onion",
             "groceryimage" : "Onion.png",
-            "grocerycost" : "Rs.80"
+            "grocerycost" : "Rs.80/kg"
         },
         "Tomato" : {
             "groceryname" : "Tomato",
             "groceryimage" : "Tomato.png",
-            "grocerycost" : "Rs.30"
+            "grocerycost" : "Rs.30/kg"
         },
         "Brinjal" : {
             "groceryname" : "Brinjal",
             "groceryimage" : "Brinjal.png",
-            "grocerycost" : "Rs.50"
+            "grocerycost" : "Rs.50/kg"
         },
         "Potato" : {
             "groceryname" : "Potato",
             "groceryimage" : "Potato.png",
-            "grocerycost" : "Rs.40"
+            "grocerycost" : "Rs.40/kg"
         },
         "Spinach" : {
             "groceryname" : "Spinach",
             "groceryimage" : "Spinach.png",
-            "grocerycost" : "Rs.20"
+            "grocerycost" : "Rs.20/kg"
         }
     },
     "Dairy" :{
         "Milk" : {
             "groceryname" : "Milk",
             "groceryimage" : "Milk.png",
-            "grocerycost" : "Rs.30"
+            "grocerycost" : "Rs.30/pack"
         },
         "Butter" : {
             "groceryname" : "Butter",
             "groceryimage" : "Butter.png",
-            "grocerycost" : "Rs.100"
+            "grocerycost" : "Rs.100/pack"
         },
         "Cheese" : {
             "groceryname" : "Cheese",
             "groceryimage" : "Cheese.png",
-            "grocerycost" : "Rs.120"
+            "grocerycost" : "Rs.120/pack"
         },
         "Curd" : {
             "groceryname" : "Curd",
             "groceryimage" : "Curd.png",
-            "grocerycost" : "Rs.20"
+            "grocerycost" : "Rs.20/pack"
         },
         "Panner" : {
             "groceryname" : "Panner",
             "groceryimage" : "Panner.png",
-            "grocerycost" : "Rs.140"
+            "grocerycost" : "Rs.140/pack"
         }
     },
     "Staples" :{
         "Rice" : {
             "groceryname" : "Rice",
             "groceryimage" : "Rice.png",
-            "grocerycost" : "Rs.60"
+            "grocerycost" : "Rs.60/kg"
         },
         "Maida" : {
             "groceryname" : "Maida",
             "groceryimage" : "Maida.png",
-            "grocerycost" : "Rs.30"
+            "grocerycost" : "Rs.30/kg"
         },
         "Wheat" : {
             "groceryname" : "Wheat",
             "groceryimage" : "Wheat.png",
-            "grocerycost" : "Rs.80"
+            "grocerycost" : "Rs.80/kg"
         },
         "GreenGram" : {
             "groceryname" : "GreenGram",
             "groceryimage" : "GreenGram.png",
-            "grocerycost" : "Rs.70"
+            "grocerycost" : "Rs.70/kg"
         },
         "UradDhal" : {
             "groceryname" : "UradDhal",
             "groceryimage" : "UradDhal.png",
-            "grocerycost" : "Rs.120"
+            "grocerycost" : "Rs.120/kg"
         }
     }
 }

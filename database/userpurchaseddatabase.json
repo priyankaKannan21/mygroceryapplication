@@ -3,17 +3,39 @@
     "Brinjal": {
       "groceryname": "Brinjal",
       "groceryimage": "Brinjal.png",
-      "grocerycost": "Rs.50"
+      "grocerycost": "Rs.50/kg"
     },
     "Apple": {
       "groceryname": "Apple",
       "groceryimage": "Apple.png",
-      "grocerycost": "Rs.200"
+      "grocerycost": "Rs.200/kg"
     },
     "Banana": {
       "groceryname": "Banana",
       "groceryimage": "Banana.png",
-      "grocerycost": "Rs.50"
+      "grocerycost": "Rs.50/kg"
+    }
+  },
+  "papa@gmail.com": {
+    "Mango": {
+      "groceryname": "Mango",
+      "groceryimage": "Mango.png",
+      "grocerycost": "Rs.80/kg"
+    },
+    "Tomato": {
+      "groceryname": "Tomato",
+      "groceryimage": "Tomato.png",
+      "grocerycost": "Rs.30/kg"
+    },
+    "Banana": {
+      "groceryname": "Banana",
+      "groceryimage": "Banana.png",
+      "grocerycost": "Rs.50/kg"
+    },
+    "Spinach": {
+      "groceryname": "Spinach",
+      "groceryimage": "Spinach.png",
+      "grocerycost": "Rs.20/kg"
     }
   }
 }

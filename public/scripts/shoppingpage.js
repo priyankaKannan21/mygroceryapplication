@@ -84,6 +84,7 @@ async function shoppingpage(){
 
 async function addtocart(groceryItem,groceryItemName){
     let userNameCart = sessionStorage.getItem("key");
+    console.log(groceryItem,groceryItemName);
     await fetch("http://localhost:2000/groceryItemData", {
         method: "POST",
         headers:{
@@ -108,4 +109,8 @@ function logout(){
 
 function viewcart(){
     location.href = "CartPage.html";   
+}
+
+function profile(){
+    location.href = "ProfilePage.html";   
 }

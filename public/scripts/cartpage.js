@@ -1,9 +1,5 @@
 let username = sessionStorage.getItem("key");
-
-function backpage(){
-    location.href = "ShoppingPage.html";
-}
-
+document.getElementById("profileButton").innerHTML = `${username.charAt(0).toUpperCase()}`;
 cartPage(username);
 async function cartPage(username){
     let usercartdata;
@@ -20,41 +16,51 @@ async function cartPage(username){
    .then((res) => {
         usercartdata = res;
    })
+   
    let cartdata =``;
    let allcartdata =``;
    let cartdatalist = Object.keys(usercartdata);
    let datalen = cartdatalist.length;
-   let totalCost = 0;
-   for(let index=0; index<datalen; index++){
-        cartdata += `<div class="groceryCards">
-            <div class="groceryImage1">
-                <img src="./assets/${usercartdata[cartdatalist[index]].groceryimage}">
-            </div>
-            <div class="groceryItemInfo">
-                <div class="groceryNameCost">
-                    <label class="groceryName">${usercartdata[cartdatalist[index]].groceryname}</label>
-                    <label class="groceryCost">${usercartdata[cartdatalist[index]].grocerycost}</label>
-                </div>
-                <button onclick="removeitem('${username}','${cartdatalist[index]}')">Remove</button>
-                <button onclick="cartbuyitem('${username}','${cartdatalist[index]}')">Buy</button>
-            </div>
-        </div>`;
+   if(datalen != 0){
+        let totalCost = 0;
+        for(let index=0; index<datalen; index++){
+                cartdata += `<div class="groceryCards">
+                    <div class="groceryImage1">
+                        <img src="./assets/${usercartdata[cartdatalist[index]].groceryimage}">
+                    </div>
+                    <div class="groceryItemInfo">
+                        <div class="groceryNameCost">
+                            <label class="groceryName">${usercartdata[cartdatalist[index]].groceryname}</label>
+                            <label class="groceryCost">${usercartdata[cartdatalist[index]].grocerycost}</label>
+                        </div>
+                        <button onclick="removeitem('${username}','${cartdatalist[index]}')">Remove</button>
+                        <button onclick="cartbuyitem('${username}','${cartdatalist[index]}')">Buy</button>
+                    </div>
+                </div>`;
 
-        allcartdata += `<div class="groceryNameCost">
-        <label class="groceryName">${usercartdata[cartdatalist[index]].groceryname}</label>
-        <label class="groceryCost">${usercartdata[cartdatalist[index]].grocerycost}</label>
-        </div>`;
-        let coststr = (usercartdata[cartdatalist[index]].grocerycost).split(".")[1];
-        totalCost += parseInt(coststr);
-   }
-
-   allcartdata += `<div class="totalSection">
-    <label class="totalHeader">Total</label>
-    <label class="totalCost">Rs.${totalCost}</label>
-    </div>`;
-    allcartdata += `<button onclick="buyallitem('${username}')">Buy All</button>`
-   document.getElementById("groceryItemsInCart").innerHTML = cartdata;
-   document.getElementById("productCostNameList").innerHTML = allcartdata;
+                allcartdata += `<div class="groceryNameCost">
+                <label class="groceryName">${usercartdata[cartdatalist[index]].groceryname}</label>
+                <label class="groceryCost">${usercartdata[cartdatalist[index]].grocerycost}</label>
+                </div>`;
+                let coststr = (usercartdata[cartdatalist[index]].grocerycost).split(".")[1];
+                totalCost += parseInt(coststr);
+        }
+        allcartdata += `<div class="totalSection">
+            <label class="totalHeader">Total</label>
+            <label class="totalCost">Rs.${totalCost}</label>
+            </div>`;
+            allcartdata += `<button onclick="buyallitem('${username}')">Buy All</button>`
+        document.getElementById("groceryItemsInCart").innerHTML = cartdata;
+        document.getElementById("productCostNameList").innerHTML = allcartdata;
+    }else{
+        let totalCost = 0;
+        allcartdata += `<div class="totalSection">
+            <label class="totalHeader">Total</label>
+            <label class="totalCost">Rs.${totalCost}</label>
+            </div>`;
+            allcartdata += `<button onclick="buyallitem('${username}')">Buy All</button>`
+        document.getElementById("productCostNameList").innerHTML = allcartdata;
+    }
 }
 
 async function removeitem(username, itemname){
@@ -106,13 +112,20 @@ async function buyallitem(username){
     .then((data) => data.json())
    .then((res) => {
         alert(res.key +"😄...");
-   });
+   })
+   cartPage(username);
    location.reload();
 }
 
-
+function backpage(){
+    location.href = "ShoppingPage.html";
+}
 
 function logout(){
     sessionStorage.clear();
     location.href = "Index.html";
+}
+
+function profile(){
+    location.href = "ProfilePage.html";   
 }
