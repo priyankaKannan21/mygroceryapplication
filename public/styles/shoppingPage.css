@@ -232,9 +232,17 @@ body{
     background-color: #A3DBDE;
     border-radius: 15px;
     width: 220px;
-    height: 210px;
+    height: 220px;
     justify-content: center;
     transition: transform 2s;
+}
+
+.nullSection.active{
+    cursor: no-drop;
+}
+.nullSection.active > div{
+    filter:brightness(0.8);
+    pointer-events: none;
 }
 
 .GroceryCards .CardViewSection:hover {
@@ -249,14 +257,26 @@ body{
     align-self: center;
 }
 
+.CardViewSection >label{
+    font-size: 17px;
+    margin-top: 5px;
+    text-align: center;
+    color: #43b13f;
+    font-weight: 700;
+}
+
+.CardViewSection .styleclasslabel{
+    color: red;
+}
+
 .CardViewSection .GroceryNameCost{
     padding: 0px 20px 0px 20px;
     display: flex;
     justify-content: space-between;
-    font-family: 'Inter';
+    font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 32px;
     color: #333333;
 }

@@ -93,6 +93,7 @@ function validationNewUser(email,password){
     }
     else{
         sessionStorage.setItem("key", res.user );
+        sessionStorage.setItem("profilename", res.profilename);
         location.href= "ShoppingPage.html";
     }
    })
@@ -107,7 +108,10 @@ function validationNewUser(email,password){
         },
         body:JSON.stringify({
             "useremail" : email,
-            "password" : password
+            "password" : password,
+            "phonenumber" : "",
+            "address" : "",
+            "userprofilename" : email.split("@")[0]
         })
     })
     .then((data) => data.json())
@@ -117,6 +121,7 @@ function validationNewUser(email,password){
     }
     else{
         sessionStorage.setItem("key", res.user);
+        sessionStorage.setItem("profilename", email.split("@")[0])
         location.href= "ShoppingPage.html";
     }
    })

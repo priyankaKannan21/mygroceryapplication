@@ -21,7 +21,7 @@ app.post("/existinguserdata", (req,res) => {
             if(userEmail.includes(body.useremail)){
               if(userdata[body.useremail].password === body.password){
                 res.json(
-                  { "key" : "Successful" , "user" : body.useremail }
+                  { "key" : "Successful" , "user" : body.useremail, "profilename" : userdata[body.useremail].userprofilename }
                 );
               }else{
               res.json(
@@ -72,15 +72,44 @@ app.post("/newuserdata", (req,res) => {
   })
 })
 
+app.post("/userprofiledatabse", (req,res) => {
+  let body = req.body;  
+  const userdetailsdata = require("./database/userdatabase.json");
+  res.send(userdetailsdata[body.useremail]);
+})
+
+app.post("/userprofileupdate", (req,res) => {
+    let body = req.body;
+    const alluserdetailsdata = require("./database/userdatabase.json");
+    let userdetailsdata = alluserdetailsdata[body.useremail];
+    userdetailsdata.userprofilename = body.userprofilename;
+    userdetailsdata.phonenumber = body.userphonenumber;
+    userdetailsdata.address = body.useraddress;
+    alluserdetailsdata[body.useremail] = userdetailsdata;
+    fs.writeFile("./database/userdatabase.json", JSON.stringify(alluserdetailsdata) ,(err) => {
+      if(err){
+        console.log(err);
+      }else{
+        res.send({"key" : "Updated your profile successfully"});
+      }
+    })
+})
+
 app.get('/qrocerydatabase', (req,res) => {
-  // const grocery={...data}
-  // for (const type of Object.keys(grocery)) {
-  //   for (const item of Object.keys(grocery[type])) {
-  //     grocery[type][item].quantity= 1+Math.floor(Math.random() * 10);
-  //   }
-  // }
-  // console.log(grocery);
-  res.send(data);
+  const gqdata = require("./database/groceryquantitydatabase.json");
+  res.send(gqdata);
+})
+
+app.post('/grocerytype', (req,res) => {
+  let body =req.body;
+  const grocerydatabase = require("./database/grocerydatabase.json");
+  let grocerytype = Object.keys(grocerydatabase);
+  for(let index =0; index<grocerytype.length; index++){
+    let grocerynamekeys = Object.keys(grocerydatabase[grocerytype[index]]);
+    if(grocerynamekeys.includes(body.groceryname)){
+      res.send({"grocerytype" : grocerytype[index]});
+    }
+  }
 })
 
 app.post('/groceryItemData', (req,res) => {
@@ -167,7 +196,6 @@ app.post('/buyitemincart', (req,res) => {
   let body = req.body;
   const cartdata = require("./database/usercartdatabase.json");
   let usercartdata = cartdata[body.useremail];
-  
   let groceryitemdata = usercartdata[body.itemname];
   let userboughtItem ={};
   userboughtItem[body.itemname] = groceryitemdata;
@@ -180,6 +208,13 @@ app.post('/buyitemincart', (req,res) => {
           console.log(err);
         }
         else{
+          let quantitydatabase = require("./database/groceryquantitydatabase.json");
+          quantitydatabase[body.grocerytype][body.itemname].quantity -= 1;
+          fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase), (err) => {
+            if(err){
+              console.log(err);
+            }
+          });
           deleteUserCartItemAfterBought(body.useremail, body.itemname)
           res.send({"key":"Item is successfully purchased"});
         }
@@ -191,13 +226,20 @@ app.post('/buyitemincart', (req,res) => {
       if(usernamedata.includes(body.useremail)){
         let userpurchaseditem = userpurchaseddata[body.useremail];
         userpurchaseditem[body.itemname] = usercartdata[body.itemname];
-        let datapurchased = JSON.parse(data)
+        let datapurchased = JSON.parse(data);
         datapurchased[body.useremail] = userpurchaseditem;
         fs.writeFile("./database/userpurchaseddatabase.json", JSON.stringify(datapurchased), (err) => {
           if(err){
             console.log(err);
           }
           else{
+            const quantitydatabase = require("./database/groceryquantitydatabase.json");
+            quantitydatabase[body.grocerytype][body.itemname].quantity -= 1;
+            fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase), (err) => {
+              if(err){
+                console.log(err);
+              }
+            });
             deleteUserCartItemAfterBought(body.useremail, body.itemname)
             res.send({"key":"Item is successfully purchased"});
           }
@@ -210,6 +252,14 @@ app.post('/buyitemincart', (req,res) => {
             console.log(err);
           }
           else{
+            let quantitydatabase = require("./database/groceryquantitydatabase.json");
+            console.log(quantitydatabase);
+            quantitydatabase[body.grocerytype][body.itemname].quantity -= 1;
+            fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase), (err) => {
+              if(err){
+                console.log(err);
+              }
+            });          
             deleteUserCartItemAfterBought(body.useremail, body.itemname)
             res.send({"key":"Item is successfully purchased"});
           }
@@ -234,7 +284,9 @@ app.post('/buyallitemincart', (req,res) => {
       let body1={};
       body1["useremail"] = body.useremail;
       body1["itemname"] = usercartitemkeys[index];
-      console.log(body1);
+      const quantitydatabase = require("./database/groceryquantitydatabase.json");
+      quantitydatabase[usercartitemkeys[index]].quantity -= 1;
+      fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase));
       addPurchasedItemToDatabase(body1);
     }
     deleteAllCartItemsAfterBought(useremail);
@@ -286,9 +338,6 @@ function deleteUserCartItemAfterBought(useremail,itemname){
     if(err){
       console.log(err);
     }
-    else{
-      res.send({"key":"Item is removed from the cart"});
-    }
   })
 
 }
@@ -329,14 +378,12 @@ function addPurchasedItemToDatabase(body){
         userpurchaseditem[body.itemname] = usercartdata[body.itemname];
         let datapurchased = JSON.parse(data)
         datapurchased[body.useremail] = userpurchaseditem;
-        console.log(datapurchased);
         fs.writeFile("./database/userpurchaseddatabase.json", JSON.stringify(datapurchased), (err) => {
           if(err){
             console.log(err);
           }
         });
       }else{
-        console.log(data);
         let datacart = JSON.parse(data)
         let finalcartdata = {...datacart, ...alluserboughtItem};
         fs.writeFile("./database/userpurchaseddatabase.json", JSON.stringify(finalcartdata), (err) => {

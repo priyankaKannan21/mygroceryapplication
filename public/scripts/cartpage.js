@@ -1,5 +1,6 @@
 let username = sessionStorage.getItem("key");
-document.getElementById("profileButton").innerHTML = `${username.charAt(0).toUpperCase()}`;
+let profilename = sessionStorage.getItem("profilename");
+document.getElementById("profileButton").innerHTML = `${profilename.charAt(0).toUpperCase()}`;
 cartPage(username);
 async function cartPage(username){
     let usercartdata;
@@ -15,8 +16,8 @@ async function cartPage(username){
     .then((data) => data.json())
    .then((res) => {
         usercartdata = res;
-   })
-   
+   })   
+
    let cartdata =``;
    let allcartdata =``;
    let cartdatalist = Object.keys(usercartdata);
@@ -24,6 +25,21 @@ async function cartPage(username){
    if(datalen != 0){
         let totalCost = 0;
         for(let index=0; index<datalen; index++){
+                let groceryname = usercartdata[cartdatalist[index]].groceryname;
+                let grocerytype;
+                await fetch("http://localhost:2000/grocerytype", {
+                    method: "POST",
+                    headers:{
+                        "Content-Type" : "application/json",
+                    },
+                    body:JSON.stringify({
+                        "groceryname" : groceryname,
+                    })
+                })
+                .then((data) => data.json())
+                .then((res) => {
+                    grocerytype = res.grocerytype;
+                });
                 cartdata += `<div class="groceryCards">
                     <div class="groceryImage1">
                         <img src="./assets/${usercartdata[cartdatalist[index]].groceryimage}">
@@ -34,7 +50,7 @@ async function cartPage(username){
                             <label class="groceryCost">${usercartdata[cartdatalist[index]].grocerycost}</label>
                         </div>
                         <button onclick="removeitem('${username}','${cartdatalist[index]}')">Remove</button>
-                        <button onclick="cartbuyitem('${username}','${cartdatalist[index]}')">Buy</button>
+                        <button onclick="cartbuyitem('${username}','${cartdatalist[index]}', '${grocerytype}')">Buy</button>
                     </div>
                 </div>`;
 
@@ -81,7 +97,7 @@ async function removeitem(username, itemname){
     cartPage(username);
 }
 
-async function cartbuyitem(username, itemname){
+async function cartbuyitem(username, itemname, grocerytype){
     await fetch("http://localhost:2000/buyitemincart", {
         method: "POST",
         headers:{
@@ -89,7 +105,8 @@ async function cartbuyitem(username, itemname){
         },
         body:JSON.stringify({
             "useremail" : username,
-            "itemname" : itemname
+            "itemname" : itemname,
+            "grocerytype" : grocerytype
         })
     })
     .then((data) => data.json())
