@@ -165,6 +165,32 @@ app.post('/groceryItemData', (req,res) => {
 
 });
 
+app.post('/searchgroceryItemData', (req,res) => {
+    let body = req.body;
+    let searchitem = body.searchinput;
+    // console.log(typeof(searchitem));
+    // searchitem = searchitem.toLowerCase();
+    let searchitemdatabase = {}
+    const grocerydatabase = require('./database/groceryquantitydatabase.json');
+    let grocerytypekeys = Object.keys(grocerydatabase);
+    for(let index=0; index<grocerytypekeys.length; index++){
+        let groceryitemkeys = Object.keys(grocerydatabase[grocerytypekeys[index]]);
+        for(let index1=0; index1<groceryitemkeys.length; index1++){
+            let itemname = groceryitemkeys[index1].toLowerCase();
+            if(itemname.startsWith(searchitem) == 1){
+                searchitemdatabase[groceryitemkeys[index1]]=grocerydatabase[grocerytypekeys[index]][groceryitemkeys[index1]];
+            }
+        }
+    }
+    if(Object.keys(searchitemdatabase).length === 0){
+        res.json({"key" : 0});
+    }
+    else{
+      res.send(searchitemdatabase);
+    }
+
+})
+
 app.post('/viewcartpage', (req,res) => {
   let body = req.body;
   const cartdata = require("./database/usercartdatabase.json");
@@ -233,12 +259,12 @@ app.post('/buyitemincart', (req,res) => {
             console.log(err);
           }
           else{
-            const quantitydatabase = require("./database/groceryquantitydatabase.json");
+            let quantitydatabase = require("./database/groceryquantitydatabase.json");
             quantitydatabase[body.grocerytype][body.itemname].quantity -= 1;
             fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase), (err) => {
               if(err){
                 console.log(err);
-              }
+              }  
             });
             deleteUserCartItemAfterBought(body.useremail, body.itemname)
             res.send({"key":"Item is successfully purchased"});
@@ -284,9 +310,24 @@ app.post('/buyallitemincart', (req,res) => {
       let body1={};
       body1["useremail"] = body.useremail;
       body1["itemname"] = usercartitemkeys[index];
+
+      const grocerydatabase = require("./database/groceryquantitydatabase.json");
+      let grocerytypeList = Object.keys(grocerydatabase);
+      let grocerytype;
+      for(let typeindex=0; typeindex< grocerytypeList.length; typeindex++){
+          let itemtypekeys = Object.keys(grocerydatabase[grocerytypeList[typeindex]])
+          if(itemtypekeys.includes(body1.itemname)){
+              grocerytype = grocerytypeList[typeindex];
+              break;
+          }
+      }
       const quantitydatabase = require("./database/groceryquantitydatabase.json");
-      quantitydatabase[usercartitemkeys[index]].quantity -= 1;
-      fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase));
+      quantitydatabase[grocerytype][body1.itemname].quantity -= 1;
+      fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase), (err) => {
+          if(err){
+            console.log(err);
+          }
+      });
       addPurchasedItemToDatabase(body1);
     }
     deleteAllCartItemsAfterBought(useremail);

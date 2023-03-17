@@ -11,11 +11,11 @@
     <div class="app">
       <div class="topSection">
         <div class="logoImage">
-          <img src="./assets/logo.png" />
+          <img src="./assets/logo.png" onclick="onClickLogo()" />
         </div>
         <div class="searchBar">
-          <input class="inputBox" type="text" />
-          <img src="./assets/searchBar.png" />
+          <input id="searchInput" class="inputBox" type="text" />
+          <img onclick="searchItems()" src="./assets/searchBar.png" />
         </div>
         <button class="viewCartBtn" id="viewCartBtn" onclick="viewcart()">View Cart</button>
         <button class="profileButton" id="profileButton">P</button>

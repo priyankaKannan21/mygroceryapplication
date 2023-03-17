@@ -76,21 +76,26 @@ async function profilePage(username){
 }
 
 async function deletePurchasedItem(username, itemname){
-    await fetch("http://localhost:2000/deletepurchaseditem", {
-        method: "POST",
-        headers:{
-            "Content-Type" : "application/json",
-        },
-        body:JSON.stringify({
-            "useremail" : username,
-            "itemname" : itemname
+    if(confirm("Do you really want to delete the product?🤔...")){
+        sessionStorage.clear();
+        location.href = "Index.html";   
+    
+        await fetch("http://localhost:2000/deletepurchaseditem", {
+            method: "POST",
+            headers:{
+                "Content-Type" : "application/json",
+            },
+            body:JSON.stringify({
+                "useremail" : username,
+                "itemname" : itemname
+            })
         })
-    })
-    .then((data) => data.json())
-   .then((res) => {
-        alert(res.key +"😔...");
-   });
-   profilePage(username);
+        .then((data) => data.json())
+        .then((res) => {
+                alert(res.key +"😔...");
+        });
+        profilePage(username);
+    }
 }
 
 async function buyAgainAddInCart(username, itemname){
@@ -161,6 +166,10 @@ async function saveEditProfile(){
    profilePage(username);
 }
 
+function onClickLogo(){
+    location.href = "ShoppingPage.html";
+}
+
 function shoppingpage(){
     location.href = "ShoppingPage.html";
 }
@@ -178,6 +187,8 @@ function profile(){
 }
 
 function logout(){
-    sessionStorage.clear();
-    location.href = "Index.html";
+    if(confirm("Do you really want to logout")){
+        sessionStorage.clear();
+        location.href = "Index.html";   
+    }
 }

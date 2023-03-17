@@ -11,7 +11,7 @@
     <div class="app">
         <div class="leftsidePage">
             <div class="logoImage">
-                <img src="./assets/logo.png">
+                <img src="./assets/logo.png" onclick="onClickLogo()">
             </div>
             <div class="screen signInPage active">
                 <div class="loginForm" id="">
@@ -20,8 +20,10 @@
                     <input type="email" class="inputbox" id="userEmail" placeholder="Email" required="" autocomplete="off">
                     <input type="password" class="inputbox" id="userPassword" placeholder="Password" required="">
                     <div class="layoutContent">
-                        <input type="checkbox" value="lsRememberMe" id="rememberMe"> 
-                        <label class="rememberMe">Remember me</label>
+                        <div class="layoutflex">
+                            <input type="checkbox" value="lsRememberMe" id="rememberMe"> 
+                            <label class="rememberMe">Remember me</label>
+                        </div>
                         <label class="forgetpassword">Forget password?</label>
                     </div>
                     <button class="button" id="signInbtn" type="submit">Sign In</button>
@@ -35,8 +37,11 @@
                     <input type="email" class="inputbox" id="newUserEmail" placeholder="Email" required="" autocomplete="off">
                     <input type="password" class="inputbox" id="newUserPassword" placeholder="Password" required="">
                     <div class="layoutContent">
-                        <input type="checkbox" value="lsRememberMe" id="rememberMe"> 
-                        <label class="rememberMe">Remember me</label>
+                        <div class="layoutflex">
+                            <input type="checkbox" value="lsRememberMe" id="rememberMe"> 
+                            <label class="rememberMe">Remember me</label>
+                        </div>
+                        <label class="forgetpassword">Forget password?</label>
                     </div>
                     <button class="button" id="signUpbtn" type="submit">Sign Up</button>
                     <button class="button" onclick="signInFunc()">Existing User? Sign In</button>

@@ -80,58 +80,68 @@ async function cartPage(username){
 }
 
 async function removeitem(username, itemname){
-    await fetch("http://localhost:2000/removeitemincart", {
-        method: "POST",
-        headers:{
-            "Content-Type" : "application/json",
-        },
-        body:JSON.stringify({
-            "useremail" : username,
-            "itemname" : itemname
+    if(confirm("Do you want to remove the product from cart?🤔...")){
+        await fetch("http://localhost:2000/removeitemincart", {
+            method: "POST",
+            headers:{
+                "Content-Type" : "application/json",
+            },
+            body:JSON.stringify({
+                "useremail" : username,
+                "itemname" : itemname
+            })
         })
-    })
-    .then((data) => data.json())
-   .then((res) => {
-        alert(res.key +"😔...");
-   });
-    cartPage(username);
+        .then((data) => data.json())
+        .then((res) => {
+                alert(res.key +"😔...");
+        });
+        cartPage(username);
+    }
 }
 
 async function cartbuyitem(username, itemname, grocerytype){
-    await fetch("http://localhost:2000/buyitemincart", {
-        method: "POST",
-        headers:{
-            "Content-Type" : "application/json",
-        },
-        body:JSON.stringify({
-            "useremail" : username,
-            "itemname" : itemname,
-            "grocerytype" : grocerytype
+    if(confirm("Do you really want to buy the product?😀...")){
+        await fetch("http://localhost:2000/buyitemincart", {
+            method: "POST",
+            headers:{
+                "Content-Type" : "application/json",
+            },
+            body:JSON.stringify({
+                "useremail" : username,
+                "itemname" : itemname,
+                "grocerytype" : grocerytype
+            })
         })
-    })
-    .then((data) => data.json())
-   .then((res) => {
-        alert(res.key +"😄...");
-   });
-   location.reload();
+        .then((data) => data.json())
+        .then((res) => {
+                alert(res.key +"😄...");
+        });
+        location.reload();
+    }
 }
 
 async function buyallitem(username){
-    await fetch("http://localhost:2000/buyallitemincart", {
-        method: "POST",
-        headers:{
-            "Content-Type" : "application/json",
-        },
-        body:JSON.stringify({
-            "useremail" : username
+    if(confirm("Do you really want to buy all the product in cart?😀...")){
+        await fetch("http://localhost:2000/buyallitemincart", {
+            method: "POST",
+            headers:{
+                "Content-Type" : "application/json",
+            },
+            body:JSON.stringify({
+                "useremail" : username
+            })
         })
-    })
-    .then((data) => data.json())
-   .then((res) => {
-        alert(res.key +"😄...");
-   })
-   cartPage(username);
-   location.reload();
+        .then((data) => data.json())
+        .then((res) => {
+                alert(res.key +"😄...");
+        });
+        cartPage(username);
+        location.reload();
+    }
+}
+
+function onClickLogo(){
+    location.href = "ShoppingPage.html";
 }
 
 function backpage(){
@@ -139,8 +149,10 @@ function backpage(){
 }
 
 function logout(){
-    sessionStorage.clear();
-    location.href = "Index.html";
+    if(confirm("Do you really want to logout")){
+        sessionStorage.clear();
+        location.href = "Index.html";   
+    }
 }
 
 function profile(){

@@ -3,6 +3,7 @@ let viewCartBtn = document.getElementById("viewCartBtn");
 viewCartBtn.addEventListener("click", () => {
     location.href = "CartPage.html";
 });
+
 shoppingpage();
 async function shoppingpage(){
     let grocerydata;
@@ -112,6 +113,102 @@ async function shoppingpage(){
 
 }
 
+async function searchItems(){
+    let grocerysearchdata;
+        let searchinput = document.getElementById("searchInput").value.toLowerCase();
+        try{
+            if(searchinput != ""){
+                await fetch("http://localhost:2000/searchgroceryItemData", {
+                    method: "POST",
+                    headers:{
+                        "Content-Type" : "application/json",
+                    },
+                    body:JSON.stringify({
+                        "searchinput" : searchinput
+                    })
+                })
+                .then((data) => data.json())
+                .then((res) => {
+                    if(res.key == 0){
+                        alert("Item you searched is not available😔...")
+                        shoppingpage();
+                    }else{
+                        grocerysearchdata = res;
+                        console.log(grocerysearchdata);                
+                    }
+                });
+                
+                let groceryItemskeys = Object.keys(grocerysearchdata);
+    
+                let grocerydata;
+                await fetch("http://localhost:2000/qrocerydatabase")
+                .then((data) => data.json())
+                .then((res) => {
+                    grocerydata = res;
+                })
+                let grocerytypeList = Object.keys(grocerydata);
+                let arractive =[];
+                let arrstyleclass =[];
+                let arritemtype = [];
+                for(let index1=0;index1<groceryItemskeys.length;index1++){
+                    if(grocerysearchdata[groceryItemskeys[index1]].quantity< 1){
+                        arractive[index1] = "nullSection active";
+                        arrstyleclass[index1] = "styleclasslabel";
+                    }else{
+                        arractive[index1] = "nullSection";
+                        if(grocerysearchdata[groceryItemskeys[index1]].quantity< 4){
+                            arrstyleclass[index1]= "styleclasslabel"
+                        }
+                        else{
+                            arrstyleclass[index1] = "";
+                        }
+                    }
+                    for(let typeindex=0; typeindex< grocerytypeList.length; typeindex++){
+                        let itemtypekeys = Object.keys(grocerydata[grocerytypeList[typeindex]])
+                        if(itemtypekeys.includes(groceryItemskeys[index1])){
+                            arritemtype[index1] = grocerytypeList[typeindex];
+                            break;
+                        }
+                    }
+                }
+                console.log(groceryItemskeys)
+                console.log(arritemtype);
+                let groceryitemsection = ``;
+                for(let index=0;index<groceryItemskeys.length;index++){
+                    groceryitemsection += `<div class="${arractive[index]}">
+                        <div class="CardViewSection">
+                            <div class="GroceryImage1">
+                                <img src="./assets/${grocerysearchdata[groceryItemskeys[index]].groceryimage}">
+                            </div>
+                            <div class="GroceryNameCost">
+                                <label class="GroceryName">${groceryItemskeys[index]}</label>
+                                <label class="GroceryCost">${grocerysearchdata[groceryItemskeys[index]].grocerycost}</label>
+                            </div>
+                            <button onclick="addtocart('${arritemtype[index]}','${groceryItemskeys[index]}')">Add to Cart</button>
+                            <label class="${arrstyleclass[index]}" id="quantityLabel">Only ${grocerysearchdata[groceryItemskeys[index]].quantity} left</label>
+                        </div>
+                    </div>`;
+                }
+                let grocerysection =``;
+                grocerysection =`<div class="GroceryItemSection">
+                    <div class="topSectionItem">
+                        <label class="groceryName">Grocery products</label>
+                        <button class="SeeMoreBtn">See More</button>
+                    </div>
+                    <div class="GroceryCards">
+                        ${groceryitemsection}
+                    </div>
+                </div>`;
+                document.getElementById("shoppingSection").innerHTML = grocerysection;
+            }else{
+                alert("Item is not entered... Enter the item you are searching for🧐...")
+                shoppingpage();
+            }
+        }
+        catch(v){   
+        }
+}
+
 async function addtocart(groceryItem,groceryItemName){
     let userNameCart = sessionStorage.getItem("key");
     console.log(groceryItem,groceryItemName);
@@ -132,9 +229,15 @@ async function addtocart(groceryItem,groceryItemName){
     })
 }
 
+function onClickLogo(){
+    location.reload()
+}
+
 function logout(){
-    sessionStorage.clear();
-    location.href = "Index.html";
+    if(confirm("Do you really want to logout")){
+        sessionStorage.clear();
+        location.href = "Index.html";   
+    }
 }
 
 function viewcart(){

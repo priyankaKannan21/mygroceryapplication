@@ -3,6 +3,10 @@ window.onload = () => {
     isActive = true;
     onloadpage(isActive)
 }
+
+function onClickLogo(){
+    location.reload()
+}
 function signUpFunc(){
     document.querySelector(".signInPage").classList.remove("active")
     document.querySelector(".signUpPage").classList.add("active");

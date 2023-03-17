@@ -50,6 +50,7 @@ body{
     margin-left:-10%;
     width: 367px;
     height: 226px;
+    cursor: pointer;
 }
 
 .signInPage .loginForm{
@@ -104,21 +105,29 @@ body{
 }
 
 .loginForm .layoutContent{
-    display: inline;
+    display: flex;
+    justify-content: space-between;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
+    padding: 0px 10px 0px 5px;
     color: #093545;
 }
 
+.layoutContent .layoutflex{
+    display: flex;
+    gap: 5px
+}
+
 .loginForm .button{
-    width: 381.44px;
+    width: 401.44px;
     height: 52.31px;
     font-size: 16px; 
     background: #20DF7F;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .rightsidePage .header{
