@@ -14,8 +14,7 @@
                 <img src="./assets/logo.png" onclick="onClickLogo()">
             </div>
             <div class="topLeftSection">
-                <button class="backBtn" onclick="backpage()">Back</button>
-                <button class="profileButton" id="profileButton">M</button>
+                <button class="viewCartBtn" id="viewCartBtn" onclick="viewcart()">View Cart</button>                <button class="profileButton" id="profileButton">M</button>
                 <div class="userName" id="userName">Priyanka</div>
                 <div class="options">
                     <div class="dropDown">
@@ -37,7 +36,13 @@
         <div class="bottomSection">
             <div class="profileSection" id="profileSection">
                 <h1 class="profileHeader">Profile Section</h1>
-                <img class="userprofileimage" src="./assets/user.png">
+                <button class="userprofileimage" id="userprofileimage" onclick="profileClickFunc()"><img src="./assets/user.png"></button>
+                <div class="profileDropdownContent" id="profileDropdownContent">
+                    <div class="profileImgOption">
+                        <div><img class="profilePic1" src="./assets/gamer.png" onclick="profileImageChange('gamer')"></div>
+                        <div><img class="profilePic2" src="./assets/woman.png" onclick="profileImageChange('woman')"></div>   
+                    </div>      
+                </div>
                 <div class="profileDetails" id="profileDetails">
                     <div class="profileDetailList">
                         <label class="UName">Name</label>
@@ -88,6 +93,8 @@
                 </div>
             </div>
         </div>
+        <div id="snackbar"></div>
+
     </div>
     <script src="./scripts/profilepage.js"></script>
 </body>

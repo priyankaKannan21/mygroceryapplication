@@ -130,8 +130,12 @@ async function searchItems(){
                 .then((data) => data.json())
                 .then((res) => {
                     if(res.key == 0){
-                        alert("Item you searched is not available😔...")
-                        shoppingpage();
+                        var x = document.getElementById("snackbar");
+                        x.className = "show";
+                        document.getElementById("snackbar").innerHTML =`Item you searched is not available😔...`;
+                        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+                        setTimeout(function(){x.className = x.className.replace("show", "");}, 2000);
+                        setTimeout(function(){shoppingpage();}, 2100);
                     }else{
                         grocerysearchdata = res;
                         console.log(grocerysearchdata);                
@@ -201,8 +205,12 @@ async function searchItems(){
                 </div>`;
                 document.getElementById("shoppingSection").innerHTML = grocerysection;
             }else{
-                alert("Item is not entered... Enter the item you are searching for🧐...")
-                shoppingpage();
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                document.getElementById("snackbar").innerHTML =`Item is not entered 🧐...`;
+                document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+                setTimeout(function(){x.className = x.className.replace("show", "");}, 2000);
+                setTimeout(function(){shoppingpage();}, 2100);
             }
         }
         catch(v){   
@@ -225,7 +233,11 @@ async function addtocart(groceryItem,groceryItemName){
     })
     .then((data) => data.json())
     .then((res) => {
-        alert(res.key + "😊..." + " " +"Continue Shopping!!!");
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`${res.key} 😊... Continue Shopping!!!`;
+        document.getElementById("snackbar").style.backgroundColor = "#75d06a";
+        setTimeout(function(){x.className = x.className.replace("show", "");}, 2000);
     })
 }
 
@@ -236,8 +248,12 @@ function onClickLogo(){
 function logout(){
     if(confirm("Do you really want to logout")){
         sessionStorage.clear();
-        location.href = "Index.html";   
-    }
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Logging out😔`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){x.className = x.className.replace("show", "");}, 2000);
+        setTimeout(function(){location.href= "Index.html";}, 2100)    }
 }
 
 function viewcart(){

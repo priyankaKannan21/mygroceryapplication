@@ -35,7 +35,37 @@ app.post("/existinguserdata", (req,res) => {
           }
         }
     })
-})
+});
+
+app.post("/forgertpassworduser", (req,res) => {
+  let body = req.body;  
+  const userdetailsdata = Object.keys(require("./database/userdatabase.json"));
+  if(userdetailsdata.includes(body.useremail)){
+    res.json({"key" : "Successful"})
+  }else{
+    res.json({"key" : "Unsuccessful"})
+  }
+});
+
+app.post("/changepassworduser", (req,res) => {
+  let body = req.body; 
+  const userdata = require("./database/userdatabase.json");
+  let userdetailsdata = Object.keys(userdata);
+  if(userdetailsdata.includes(body.useremail)){
+    userdata[body.useremail].password = body.userpassword;
+    fs.writeFile("./database/userdatabase.json", JSON.stringify(userdata), (err) => {
+      if(err){
+        console.log(err);
+      }else{
+        res.json({"key" : "Successful"});
+      }
+    });
+  }else{
+    res.json({"key" : "Unsuccessful"});
+  }
+});
+
+
 
 app.post("/newuserdata", (req,res) => {
   let body = req.body;
@@ -44,7 +74,7 @@ app.post("/newuserdata", (req,res) => {
   fs.readFile("./database/userdatabase.json", (err,data) => {
     if(err){
       console.log(err);
-      fs.writeFile("./database/userdatabase.json", JSON.stringify(userdetails,null,2), (err) => {
+      fs.writeFile("./database/userdatabase.json", JSON.stringify(userdetails), (err) => {
         if(err){
           console.log(err);
         }
@@ -57,26 +87,73 @@ app.post("/newuserdata", (req,res) => {
     }
     else{
       let data1 = JSON.parse(data)
-      let finaluserdata = {...data1, ...userdetails};
-      fs.writeFile("./database/userdatabase.json", JSON.stringify(finaluserdata), (err) => {
-        if(err){
-          console.log(err);
-        }
-        else{
-          res.json(
-            { "key" : "Successful" , "user" : body.useremail }
-          );
-        }
-      })
+      if(Object.keys(data1).includes(body.useremail)){
+        res.json({ "key" : "Unsuccessful", "message" : "User credentials already exist"});      
+      }else{
+        let finaluserdata = {...data1, ...userdetails};
+        fs.writeFile("./database/userdatabase.json", JSON.stringify(finaluserdata), (err) => {
+          if(err){
+            console.log(err);
+          }
+          else{
+            fs.readFile("./database/userprofileimage.json", (err,data) => {
+              if(err){
+                console.log(err);
+              }else{
+                let data1 = JSON.parse(data);
+                data1[body.useremail] = "";
+                fs.writeFile("./database/userprofileimage.json", JSON.stringify(data1), (err) => {
+                  if(err){
+                    console.log(err);
+                  }
+                });
+              }
+            });
+            res.json(
+              { "key" : "Successful" , "user" : body.useremail }
+            );
+          }
+        })
+      }
     }
   })
-})
+});
 
 app.post("/userprofiledatabse", (req,res) => {
   let body = req.body;  
   const userdetailsdata = require("./database/userdatabase.json");
   res.send(userdetailsdata[body.useremail]);
-})
+});
+
+app.post("/userprofileimgdata", (req,res) => {
+  let body = req.body;
+  const profiledata = require("./database/userprofileimage.json");
+  if(profiledata === {}){
+    res.json({"key" : "none"});
+  }else{
+    let profilenamekeys = Object.keys(profiledata);
+    if(profilenamekeys.includes(body.useremail)){
+      res.json({"key" :profiledata[body.useremail]});
+    }
+  }
+});
+
+app.post("/updateuserprofileimgdata", (req,res) => {
+  let body = req.body;
+  let profiledata = require("./database/userprofileimage.json");
+  let profiledatakeys = Object.keys(profiledata);
+  if(profiledatakeys.includes(body.useremail)){
+    profiledata[body.useremail] = body.profileimgname;
+    fs.writeFile("./database/userprofileimage.json", JSON.stringify(profiledata), (err) => {
+      if(err){
+        console.log(err);
+      }else{
+        res.json({"key" : "successful"});
+      }
+    })
+  }
+
+});
 
 app.post("/userprofileupdate", (req,res) => {
     let body = req.body;
@@ -93,12 +170,12 @@ app.post("/userprofileupdate", (req,res) => {
         res.send({"key" : "Updated your profile successfully"});
       }
     })
-})
+});
 
 app.get('/qrocerydatabase', (req,res) => {
   const gqdata = require("./database/groceryquantitydatabase.json");
   res.send(gqdata);
-})
+});
 
 app.post('/grocerytype', (req,res) => {
   let body =req.body;
@@ -110,7 +187,7 @@ app.post('/grocerytype', (req,res) => {
       res.send({"grocerytype" : grocerytype[index]});
     }
   }
-})
+});
 
 app.post('/groceryItemData', (req,res) => {
   let body = req.body;
@@ -198,7 +275,7 @@ app.post('/viewcartpage', (req,res) => {
   if(userkeys.includes(body.useremail)){
     res.send(cartdata[body.useremail]);
   }else{
-    res.send({});
+    res.json({"key" : "NoItems"});
   }
 })
 

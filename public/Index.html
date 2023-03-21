@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery Online</title>
     <link rel="stylesheet" href="Index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
 </head>
 <body>
     <div class="app">
@@ -19,29 +21,31 @@
                     <div class="content">Start shopping your grocery at Grocery Online</div>
                     <input type="email" class="inputbox" id="userEmail" placeholder="Email" required="" autocomplete="off">
                     <input type="password" class="inputbox" id="userPassword" placeholder="Password" required="">
+                    <i class="far fa-eye hideIcon" id="togglebutton"></i>
                     <div class="layoutContent">
                         <div class="layoutflex">
                             <input type="checkbox" value="lsRememberMe" id="rememberMe"> 
                             <label class="rememberMe">Remember me</label>
                         </div>
-                        <label class="forgetpassword">Forget password?</label>
+                        <label class="forgetpassword" onclick="forgetpass()">Forget password?</label>
                     </div>
                     <button class="button" id="signInbtn" type="submit">Sign In</button>
                     <button class="button" onclick="signUpFunc()">New User? Create an Account</button>
                 </div>
             </div>
+            <div id="snackbar"></div>
             <div class="screen signUpPage">
                 <div class="loginForm" id="">
                     <div class="signIn">Sign Up</div>
                     <div class="content">Start shopping your grocery at Grocery Online</div>
                     <input type="email" class="inputbox" id="newUserEmail" placeholder="Email" required="" autocomplete="off">
                     <input type="password" class="inputbox" id="newUserPassword" placeholder="Password" required="">
+                    <i class="far fa-eye hideIcon" id="togglebutton1"></i>
                     <div class="layoutContent">
                         <div class="layoutflex">
                             <input type="checkbox" value="lsRememberMe" id="rememberMe"> 
                             <label class="rememberMe">Remember me</label>
                         </div>
-                        <label class="forgetpassword">Forget password?</label>
                     </div>
                     <button class="button" id="signUpbtn" type="submit">Sign Up</button>
                     <button class="button" onclick="signInFunc()">Existing User? Sign In</button>

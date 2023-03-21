@@ -4,6 +4,27 @@ window.onload = () => {
     onloadpage(isActive)
 }
 
+const hidebtn = document.querySelector('#togglebutton');
+const userpassword = document.querySelector('#userPassword');
+
+
+hidebtn.addEventListener('click', function (e) {
+    const type = userpassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    userpassword.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+});
+
+const hidebtn1 = document.querySelector('#togglebutton1');
+const newuserpassword = document.querySelector('#newUserPassword');
+
+hidebtn1.addEventListener('click', function (e) {
+    const type1 = newuserpassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    newuserpassword.setAttribute('type', type1);
+    this.classList.toggle('fa-eye-slash');
+});
+
+
+
 function onClickLogo(){
     location.reload()
 }
@@ -44,41 +65,111 @@ function onloadpage(isActive){
 }
 
 function validationUser(email,password){
+    let domain =((email.split("@")[1]).split(".")[0]);
     if(email === ""){
-        alert("Enter your email");
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Enter your email`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        // setTimeout(function(){location.href= "ShoppingPage.html";}, 2500);
         return false;
     }
     else if(password === ""){
-        alert("Enter your password");
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Enter your password`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
         return false;
     }
-    else if(email.split("@")[1] != "gmail.com"){
-        alert("Invalid Email should end with @gmail.com");
+    else if(!(email.endsWith(".com"))){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Invalid Email address`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
         return false;
-    }
-    return true;
-}
-function validationNewUser(email,password){
-    if(email === ""){
-        alert("Enter your email");
-        return false;
-    }
-    else if(password === ""){
-        alert("Enter your password");
-        return false;
-    }
-    else if(email.split("@")[1] != "gmail.com"){
-        alert("Invalid Email should end with @gmail.com");
-        return false;
-    }
-    else if(password.length < 8){
-        alert("Password need to be minimum of 8 characters")
+    }else if(!(email.split('')).includes("@")){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Invalid Email address`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;   
+    }else if(!(/^[a-zA-Z]*$/.test(domain)) || domain === ""){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Invalid Email address`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
         return false;
     }
     return true;
 }
 
- function signInUser(email,password){
+function validationNewUser(email,password){
+    let emailarr=[];
+    emailarr = email.split('');
+    let domain =((email.split("@")[1]).split(".")[0]);
+    if(email === ""){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Enter your email`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;
+    }
+    else if(password === ""){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Enter your password`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;
+    }else if(!emailarr.includes("@")){
+        console.log(!emailarr.includes("@"));
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Invalid Email address`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;   
+    }
+    else if(!(/^[a-zA-Z]*$/.test(domain))){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Invalid Email address`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;
+    }else if(!(email.endsWith(".com"))){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Invalid Email address`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;
+    }
+    else if(password.length < 8){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Password need to be minimum of 8 characters`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;
+    }else if(/^[a-zA-Z0-9]+$/.test(password)){
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Password need to be strong`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        return false;
+    }
+    return true;
+}
+
+function signInUser(email,password){
     console.log(email,password )
     fetch("http://localhost:2000/existinguserdata", {
         method: "POST",
@@ -93,12 +184,21 @@ function validationNewUser(email,password){
     .then((data) => data.json())
    .then((res)=>{
     if(res.key === "Unsuccessful"){
-        alert(res.message +"😔")
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`${res.message} 😔`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
     }
     else{
         sessionStorage.setItem("key", res.user );
         sessionStorage.setItem("profilename", res.profilename);
-        location.href= "ShoppingPage.html";
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Successful Sign In 😄`;
+        document.getElementById("snackbar").style.backgroundColor = "#75d06a";
+        setTimeout(function(){x.className = x.className.replace("show", "");}, 2000);
+        setTimeout(function(){location.href= "ShoppingPage.html";}, 2500)
     }
    })
 }
@@ -121,12 +221,25 @@ function validationNewUser(email,password){
     .then((data) => data.json())
    .then((res)=>{
     if(res.key === "Unsuccessful"){
-        alert(res.key +"😔")
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`${res.message} 😔`;
+        document.getElementById("snackbar").style.backgroundColor = "#ea6262";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
     }
     else{
         sessionStorage.setItem("key", res.user);
         sessionStorage.setItem("profilename", email.split("@")[0])
-        location.href= "ShoppingPage.html";
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        document.getElementById("snackbar").innerHTML =`Successful Sign Up 😄`;
+        document.getElementById("snackbar").style.backgroundColor = "#75d06a";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+        setTimeout(function(){location.href= "ShoppingPage.html";}, 2500);
     }
    })
+ }
+
+ function forgetpass(){
+    location.href = "forgetPasswordPage.html";
  }

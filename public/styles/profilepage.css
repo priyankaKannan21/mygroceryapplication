@@ -40,7 +40,7 @@ body{
     justify-content: flex-end;
 }
 
-.topLeftSection .backBtn{
+.topLeftSection .viewCartBtn{
     margin-top: 6px; 
     width: 127px;
     height: 43px;
@@ -64,7 +64,6 @@ body{
     height: 50px;
     border-radius: 50%;
     background-color: rgb(48, 163, 48);
-    cursor: pointer;
     color: white;
     border: none;
     font-size: 20px; 
@@ -186,12 +185,81 @@ body{
     color: #4C0D0D;
 }
 
-.profileSection .userprofileimage{
+/* .profileSection .userprofileimage{
     align-self: center;
     width: 150px;
     margin-top: -20px;
     margin-bottom: 10px;
+} */
+
+
+.profileDropdownContent {
+    display: none;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 220px;
+    background-image: linear-gradient(45deg, #e9b85d,  #F24822, #e9b85d);
+    min-width: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
+
+.profileDropdownContent.active{
+    display: block;
+}
+.userprofileimage {
+    align-self: center;
+    width: 100%;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+.userprofileimage > img{
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+}
+
+.profileImgOption{
+    width: 350px;
+    display: flex;
+
+}
+
+.profileDropdownContent .profilePic1{
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.profileDropdownContent .profilePic2{
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.profilePic1:hover{
+    background-color: #e9b85d;
+    border-radius: 10px;
+}
+
+.profilePic2:hover{
+    background-color: #e9b85d;
+    border-radius: 10px;
+}
+
+/* .userprofileimage:hover .profileDropdownContent {
+    display: block;
+} */
+
+
+
 
 .profileSection .profileDetails{
     display: flex;
@@ -385,5 +453,47 @@ body{
     background: #87a3db;
     border: 1px solid #5780cd;
 }
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #ea6262;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 30px;
+    font-size: 17px;
+  }
+  
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+
+  @-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;} 
+    to {top: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {top: 30px; opacity: 1;} 
+    to {top: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+  }
 
 
