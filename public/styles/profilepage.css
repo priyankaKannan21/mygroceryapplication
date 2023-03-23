@@ -52,7 +52,7 @@ body{
     cursor: pointer;
 }
 
-.topLeftSection .backBtn:hover{
+.topLeftSection .viewCartBtn:hover{
     background: #e9b85d;
     border: 1px solid #F24822;
 
@@ -301,6 +301,11 @@ body{
     border-radius: 10px;
     padding: 10px;
     font-family: 'Lexend Deca';
+}
+
+.userDataInput::-webkit-outer-spin-button,
+      .userDataInput::-webkit-inner-spin-button {
+        display: none;
 }
 
 .profileDetailList .userDataInput1{

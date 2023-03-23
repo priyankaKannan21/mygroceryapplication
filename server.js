@@ -348,21 +348,23 @@ app.post('/buyitemincart', (req,res) => {
           }
         });
       }else{
+        let userboughtItem1 = {};
+        userboughtItem1[body.useremail] = userboughtItem;
         let datacart = JSON.parse(data)
-        let finalcartdata = {...datacart, ...userboughtItem};
-        fs.writeFile("./database/usercartdatabase.json", JSON.stringify(finalcartdata), (err) => {
+        let finalcartdata = {...datacart, ...userboughtItem1};
+        fs.writeFile("./database/userpurchaseddatabase.json", JSON.stringify(finalcartdata), (err) => {
           if(err){
             console.log(err);
           }
           else{
             let quantitydatabase = require("./database/groceryquantitydatabase.json");
-            console.log(quantitydatabase);
+            // console.log(quantitydatabase);
             quantitydatabase[body.grocerytype][body.itemname].quantity -= 1;
             fs.writeFile("./database/groceryquantitydatabase.json", JSON.stringify(quantitydatabase), (err) => {
               if(err){
                 console.log(err);
               }
-            });          
+            });
             deleteUserCartItemAfterBought(body.useremail, body.itemname)
             res.send({"key":"Item is successfully purchased"});
           }

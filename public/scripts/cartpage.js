@@ -14,9 +14,13 @@ async function cartPage(username){
         })
     })
     .then((data) => data.json())
-   .then((res) => {
-        usercartdata = res;
-   })   
+    .then((res) => {
+        if(res.key === "NoItems"){
+            usercartdata = {};
+        }else{
+            usercartdata = res;
+        }
+    })   
 
    let cartdata =``;
    let allcartdata =``;
@@ -69,9 +73,12 @@ async function cartPage(username){
             <label class="totalHeader">Total</label>
             <label class="totalCost">Rs.${totalCost}</label>
             </div>`;
-            allcartdata += `<button onclick="buyallitem('${username}')">Buy All</button>`
+            allcartdata += `<div class="buyallbuttonclass" id="buyallbuttonclass">
+            <button id="buyAllBtn" onclick="buyallitem('${username}')">Buy All</button></div>`;
         document.getElementById("groceryItemsInCart").innerHTML = cartdata;
         document.getElementById("productCostNameList").innerHTML = allcartdata;
+        document.getElementById("buyallbuttonclass").style.cursor = "pointer";
+        document.getElementById("buyAllBtn").style.pointerEvents = "auto";
     }else{
         let totalCost = 0;
         cartdata += `<h1>Your cart is Empty 😔</h1>
@@ -84,9 +91,11 @@ async function cartPage(username){
             <label class="totalHeader">Total</label>
             <label class="totalCost">Rs.${totalCost}</label>
             </div>`;
-            allcartdata += `<button onclick="buyallitem('${username}')">Buy All</button>`;
+            allcartdata += `<div class="buyallbuttonclass" id="buyallbuttonclass"><button id="buyAllBtn" onclick="buyallitem('${username}')">Buy All</button></div>`;
         document.getElementById("groceryItemsInCart").innerHTML = cartdata;
         document.getElementById("productCostNameList").innerHTML = allcartdata;
+        document.getElementById("buyallbuttonclass").style.cursor = "not-allowed";
+        document.getElementById("buyAllBtn").style.pointerEvents = "none";
     }
 }
 

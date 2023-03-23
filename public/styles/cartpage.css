@@ -318,7 +318,11 @@ body{
     border-radius: 10px;
 }
 
-.productCostNameList > button {
+.buyallbuttonclass {
+    align-self: center;
+}
+
+.buyallbuttonclass > button {
     margin-top: 15px;
     align-self: center;
     width: 150px;
@@ -330,7 +334,7 @@ body{
     cursor: pointer;
 }
 
-.productCostNameList > button:hover{
+.buyallbuttonclass > button:hover{
     background: #87a3db;
     border: 1px solid #5780cd;
 }

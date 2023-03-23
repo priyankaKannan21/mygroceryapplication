@@ -156,10 +156,10 @@ async function editProfile(){
    });
 
     document.querySelector("#editform").innerHTML=`
-    <input class="userDataInput" id="userProfileName" type="text" value="${userprofiledetails.userprofilename}"/>
+    <input class="userDataInput" id="userProfileName" type="text" value="${userprofiledetails.userprofilename}" autocomplete="off"/>
     <label class="userData">${username}</label>
-    <input class="userDataInput" id="userPhonenumber" type="number" value="${userprofiledetails.phonenumber}"/>
-    <textarea class="userDataInput1" id="userAddress" type="text" rows=4 >${userprofiledetails.address}</textarea>
+    <input class="userDataInput" id="userPhonenumber" type="number" value="${userprofiledetails.phonenumber}" autocomplete="off" style="display: "none";"/>
+    <textarea class="userDataInput1" id="userAddress" type="text" rows=4 autocomplete="off">${userprofiledetails.address}</textarea>
     `;
     document.getElementById("buttonClass").innerHTML = `<button  id="editProfileBtn" onclick="saveEditProfile()">Save Changes</button>`;
 }
@@ -255,7 +255,12 @@ function onClickLogo(){
 }
 
 function profileClickFunc(){
-    document.querySelector(".profileDropdownContent").classList.add("active")
+    let classlist = document.querySelector(".profileDropdownContent").classList;
+    if(!classlist.contains("active")){
+        document.querySelector(".profileDropdownContent").classList.add("active");
+    }else{
+        document.querySelector(".profileDropdownContent").classList.remove("active");
+    }
 }
 
 function shoppingpage(){

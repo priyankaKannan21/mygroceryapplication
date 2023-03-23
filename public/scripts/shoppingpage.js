@@ -36,7 +36,6 @@ async function shoppingpage(){
         grocerysection += `<div class="GroceryItemSection">
         <div class="topSectionItem">
             <label class="groceryName">${groceryNameList[index]} Section</label>
-            <button class="SeeMoreBtn">See More</button>
         </div>
         <div class="GroceryCards">
             <div class="${arractive[0]}">
@@ -108,6 +107,7 @@ async function shoppingpage(){
     </div>`
     }
     document.getElementById("shoppingSection").innerHTML = grocerysection;
+    profilename = profilename.charAt(0).toUpperCase() + profilename.slice(1);
     document.getElementById("userName").innerHTML = `Welcome ${profilename} 😊`;
     document.getElementById("profileButton").innerHTML = `${profilename.charAt(0).toUpperCase()}`;
 
@@ -197,7 +197,6 @@ async function searchItems(){
                 grocerysection =`<div class="GroceryItemSection">
                     <div class="topSectionItem">
                         <label class="groceryName">Grocery products</label>
-                        <button class="SeeMoreBtn">See More</button>
                     </div>
                     <div class="GroceryCards">
                         ${groceryitemsection}
